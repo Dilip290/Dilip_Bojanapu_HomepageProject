@@ -1,77 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureTech Solutions</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FutureTech Solutions</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
+
 <body>
-    <header>
-        <h1>FutureTech Solutions</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <div class="container">
+      <h1 class="logo">FutureTech Solutions</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <section id="about">
-        <h2>About Us</h2>
-        <p>FutureTech Solutions is a digital innovation company providing world-class software and data solutions for clients across the globe. We focus on efficiency, creativity, and emerging technologies.</p>
-    </section>
+  <section id="hero">
+    <div class="hero-text">
+      <h2>Innovate. Transform. Lead.</h2>
+      <p>We create intelligent, cloud-powered digital solutions for the modern world.</p>
+      <a href="#contact" class="btn">Get in Touch</a>
+    </div>
+  </section>
 
-    <section id="services">
-        <h2>Our Services</h2>
-        <p>Below services are loaded from XML data file:</p>
-        <ul id="service-list"></ul>
-    </section>
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+      At <strong>FutureTech Solutions</strong>, we’re passionate about helping businesses grow through
+      technology. Our team specializes in cloud solutions, AI analytics, and web engineering, turning
+      ideas into reality with precision and creativity.
+    </p>
+  </section>
 
-    <section id="testimonials">
-        <h2>What Our Clients Say</h2>
-        <blockquote>"FutureTech helped us scale our operations seamlessly with AI-powered automation!"</blockquote>
-        <cite>- Sarah Johnson, CEO of InnovateX</cite>
-    </section>
+  <section id="services" class="section">
+    <h2>Our Services</h2>
+    <ul id="service-list" class="card-list"></ul>
+  </section>
 
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <label>Name:</label>
-            <input type="text" placeholder="Your name" required>
-            
-            <label>Email:</label>
-            <input type="email" placeholder="Your email" required>
-            
-            <label>Message:</label>
-            <textarea placeholder="Your message" required></textarea>
-            
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+  <section id="testimonials" class="section">
+    <h2>Testimonials</h2>
+    <div id="testimonial-list" class="testimonial-list"></div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 FutureTech Solutions. All rights reserved.</p>
-    </footer>
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+    <p id="form-status"></p>
+  </section>
 
-    <script>
-        // Fetch and display services from XML file
-        fetch('services.xml')
-        .then(response => response.text())
-        .then(data => {
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(data, "application/xml");
-            const services = xml.getElementsByTagName("service");
-            let list = "";
-            for (let i = 0; i < services.length; i++) {
-                const name = services[i].getElementsByTagName("name")[0].textContent;
-                const desc = services[i].getElementsByTagName("description")[0].textContent;
-                list += `<li><strong>${name}</strong>: ${desc}</li>`;
-            }
-            document.getElementById("service-list").innerHTML = list;
-        });
-    </script>
+  <footer>
+    <p>&copy; 2025 FutureTech Solutions. All rights reserved.</p>
+  </footer>
 </body>
 </html>
