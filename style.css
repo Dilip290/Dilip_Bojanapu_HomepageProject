@@ -1,4 +1,3 @@
-/* --- GLOBAL --- */
 * {
   margin: 0;
   padding: 0;
@@ -12,14 +11,13 @@ body {
   scroll-behavior: smooth;
 }
 
-/* --- HEADER --- */
+/* HEADER */
 header {
   background-color: #0b3954;
-  color: white;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .container {
@@ -30,19 +28,20 @@ header {
 }
 
 .logo {
-  font-size: 1.6rem;
-  letter-spacing: 1px;
+  font-size: 1.8rem;
+  color: white;
+  font-weight: 600;
 }
 
 .nav-links {
-  list-style: none;
   display: flex;
   gap: 25px;
+  list-style: none;
 }
 
 .nav-links a {
-  text-decoration: none;
   color: white;
+  text-decoration: none;
   font-weight: 500;
 }
 
@@ -50,60 +49,68 @@ header {
   text-decoration: underline;
 }
 
-/* --- HERO --- */
-#hero {
-  background: linear-gradient(to right, #0b3954, #134e6f);
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
   color: white;
-  text-align: center;
-  padding: 80px 20px;
+  cursor: pointer;
 }
 
-#hero h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+/* HERO SECTION */
+#hero {
+  background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  height: 90vh;
+  position: relative;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+}
+
+.hero-content p {
+  margin: 15px 0;
+  font-size: 1.1rem;
 }
 
 .btn {
   background-color: #00a6fb;
   color: white;
   border: none;
-  padding: 10px 25px;
+  padding: 12px 25px;
   border-radius: 5px;
-  cursor: pointer;
   font-weight: 600;
-  margin-top: 15px;
-  display: inline-block;
+  cursor: pointer;
 }
 
 .btn:hover {
   background-color: #0582ca;
 }
 
-/* --- SECTIONS --- */
+/* SECTIONS */
 .section {
   padding: 60px 20px;
   max-width: 1000px;
   margin: auto;
+  text-align: center;
 }
 
 .section h2 {
   color: #0b3954;
-  text-align: center;
+  font-size: 1.8rem;
   margin-bottom: 25px;
-  position: relative;
 }
 
-.section h2::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 3px;
-  background: #0b3954;
-  margin: 10px auto;
-  border-radius: 3px;
-}
-
-/* --- SERVICES --- */
+/* SERVICES */
 .card-list {
   display: flex;
   flex-wrap: wrap;
@@ -111,72 +118,104 @@ header {
   gap: 20px;
 }
 
-.card-list li {
-  list-style: none;
+.card {
   background: white;
   border-radius: 10px;
-  padding: 20px;
+  padding: 25px;
   width: 280px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
-.card-list li:hover {
-  transform: translateY(-5px);
+.card:hover {
+  transform: translateY(-8px);
 }
 
-/* --- TESTIMONIALS --- */
-.testimonial-list {
+/* TESTIMONIAL SLIDER */
+.slider {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  overflow-x: auto;
   gap: 20px;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
 }
 
-.testimonial {
+.slide {
+  flex: 0 0 300px;
   background: white;
   border-left: 4px solid #0b3954;
   padding: 20px;
   border-radius: 8px;
-  width: 280px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: start;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-.testimonial cite {
-  display: block;
-  margin-top: 10px;
-  font-style: italic;
-  color: #555;
-}
-
-/* --- CONTACT FORM --- */
+/* CONTACT */
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   max-width: 400px;
   margin: auto;
 }
 
 input,
 textarea {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
 }
 
 #form-status {
-  text-align: center;
   margin-top: 10px;
-  font-weight: bold;
+  color: green;
+  font-weight: 500;
 }
 
-/* --- FOOTER --- */
+/* FOOTER */
 footer {
   background-color: #0b3954;
   color: white;
   text-align: center;
   padding: 15px 0;
   margin-top: 40px;
+}
+
+/* ANIMATIONS */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #0b3954;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  #hero h2 {
+    font-size: 1.8rem;
+  }
 }
