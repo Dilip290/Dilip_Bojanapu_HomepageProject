@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureTech Solutions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>FutureTech Solutions</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>FutureTech Solutions is a digital innovation company providing world-class software and data solutions for clients across the globe. We focus on efficiency, creativity, and emerging technologies.</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>Below services are loaded from XML data file:</p>
+        <ul id="service-list"></ul>
+    </section>
+
+    <section id="testimonials">
+        <h2>What Our Clients Say</h2>
+        <blockquote>"FutureTech helped us scale our operations seamlessly with AI-powered automation!"</blockquote>
+        <cite>- Sarah Johnson, CEO of InnovateX</cite>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label>Name:</label>
+            <input type="text" placeholder="Your name" required>
+            
+            <label>Email:</label>
+            <input type="email" placeholder="Your email" required>
+            
+            <label>Message:</label>
+            <textarea placeholder="Your message" required></textarea>
+            
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 FutureTech Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch and display services from XML file
+        fetch('services.xml')
+        .then(response => response.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(data, "application/xml");
+            const services = xml.getElementsByTagName("service");
+            let list = "";
+            for (let i = 0; i < services.length; i++) {
+                const name = services[i].getElementsByTagName("name")[0].textContent;
+                const desc = services[i].getElementsByTagName("description")[0].textContent;
+                list += `<li><strong>${name}</strong>: ${desc}</li>`;
+            }
+            document.getElementById("service-list").innerHTML = list;
+        });
+    </script>
+</body>
+</html>
