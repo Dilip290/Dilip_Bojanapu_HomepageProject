@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Data for dynamic sections
+  // Dynamic data
   const services = [
     { name: "AI & Data Analytics", desc: "Turn your data into insights using AI, ML, and visualization dashboards." },
     { name: "Cloud Solutions", desc: "Secure and scalable cloud architecture built for modern businesses." },
@@ -11,11 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { quote: "Reliable, creative, and professional — highly recommended.", author: "Michael Smith, Cloudify Solutions" }
   ];
 
-  // Render Services
+  // Render dynamic sections
   document.getElementById("service-list").innerHTML =
     services.map(s => `<div class="card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join("");
-
-  // Render Testimonials
   document.getElementById("testimonial-slider").innerHTML =
     testimonials.map(t => `<div class="slide"><p>"${t.quote}"</p><cite>- ${t.author}</cite></div>`).join("");
 
@@ -28,28 +26,26 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
   });
 
-  // Fade-in effect
+  // Fade-in
   const fadeEls = document.querySelectorAll(".fade-in");
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add("visible");
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("visible"); });
   }, { threshold: 0.3 });
   fadeEls.forEach(el => observer.observe(el));
 
-  // Mobile Menu
+  // Mobile menu
   const menuToggle = document.getElementById("menu-toggle");
   const navLinks = document.querySelector(".nav-links");
   menuToggle.addEventListener("click", () => navLinks.classList.toggle("active"));
 
-  // Scroll-to-top button
+  // Scroll-to-top
   const scrollBtn = document.getElementById("scrollTopBtn");
   window.addEventListener("scroll", () => {
     scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
   });
   scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-  // Dark/Light Theme Toggle
+  // Dark/Light theme
   const themeToggle = document.getElementById("theme-toggle");
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
@@ -60,5 +56,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const isDark = document.body.classList.contains("dark-mode");
     themeToggle.textContent = isDark ? "☀️" : "🌙";
     localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+
+  // ===== POPUP FUNCTIONALITY =====
+  const popup = document.getElementById("popup-overlay");
+  const popupTitle = document.getElementById("popup-title");
+  const popupDesc = document.getElementById("popup-desc");
+  const popupClose = document.getElementById("popup-close");
+
+  document.querySelectorAll("#service-list .card").forEach(card => {
+    card.addEventListener("click", () => {
+      popupTitle.textContent = card.querySelector("h3").textContent;
+      popupDesc.textContent = card.querySelector("p").textContent;
+      popup.style.display = "flex";
+    });
+  });
+
+  popupClose.addEventListener("click", () => popup.style.display = "none");
+  popup.addEventListener("click", e => {
+    if (e.target === popup) popup.style.display = "none";
   });
 });
