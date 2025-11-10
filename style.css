@@ -1,93 +1,182 @@
-/* ----------  GLOBAL  ---------- */
+/* --- GLOBAL --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: "Segoe UI", sans-serif;
-    margin: 0;
-    background-color: #f9fafc;
-    color: #333;
-    line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  background-color: #f7f9fb;
+  scroll-behavior: smooth;
 }
 
-/* ----------  HEADER & NAV  ---------- */
+/* --- HEADER --- */
 header {
-    background-color: #0b3954;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+  background-color: #0b3954;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
 }
 
-nav ul li {
-    display: inline-block;
-    margin: 0 15px;
+.logo {
+  font-size: 1.6rem;
+  letter-spacing: 1px;
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
 }
 
-/* ----------  SECTIONS  ---------- */
-section {
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+.nav-links a:hover {
+  text-decoration: underline;
 }
 
-h2 {
-    color: #0b3954;
-    border-bottom: 2px solid #0b3954;
-    display: inline-block;
-    padding-bottom: 5px;
+/* --- HERO --- */
+#hero {
+  background: linear-gradient(to right, #0b3954, #134e6f);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
 }
 
-/* ----------  FORMS  ---------- */
+#hero h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.btn {
+  background-color: #00a6fb;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: #0582ca;
+}
+
+/* --- SECTIONS --- */
+.section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.section h2 {
+  color: #0b3954;
+  text-align: center;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.section h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #0b3954;
+  margin: 10px auto;
+  border-radius: 3px;
+}
+
+/* --- SERVICES --- */
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card-list li {
+  list-style: none;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-list li:hover {
+  transform: translateY(-5px);
+}
+
+/* --- TESTIMONIALS --- */
+.testimonial-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.testimonial {
+  background: white;
+  border-left: 4px solid #0b3954;
+  padding: 20px;
+  border-radius: 8px;
+  width: 280px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial cite {
+  display: block;
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+}
+
+/* --- CONTACT FORM --- */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: auto;
 }
 
-input, textarea {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+input,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
-button {
-    background-color: #0b3954;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
+#form-status {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
-button:hover {
-    background-color: #133c6a;
-}
-
-/* ----------  FOOTER  ---------- */
+/* --- FOOTER --- */
 footer {
-    text-align: center;
-    background-color: #0b3954;
-    color: #fff;
-    padding: 10px 0;
-    margin-top: 40px;
-    font-size: 0.9rem;
+  background-color: #0b3954;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
 }
