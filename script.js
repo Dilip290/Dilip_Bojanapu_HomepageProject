@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Embedded XML content to bypass GitHub CORS restrictions
+  // --- Embedded XML content ---
   const servicesXML = `
     <services>
       <service>
@@ -32,11 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
       </testimonial>
     </testimonials>`;
 
-  // Parse and display data
   renderXML(servicesXML, "service", "service-list");
   renderXML(testimonialsXML, "testimonial", "testimonial-slider");
 
-  // Contact form
+  // --- Contact form confirmation ---
   const form = document.getElementById("contact-form");
   const status = document.getElementById("form-status");
   form.addEventListener("submit", (e) => {
@@ -45,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
   });
 
-  // Scroll animations
+  // --- Fade-in animations ---
   const fadeEls = document.querySelectorAll(".fade-in");
   const observer = new IntersectionObserver(
     (entries) => {
@@ -57,15 +56,17 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   fadeEls.forEach((el) => observer.observe(el));
 
-  // Mobile menu
+  // --- Mobile menu toggle ---
   const menuToggle = document.getElementById("menu-toggle");
   const navLinks = document.querySelector(".nav-links");
-  menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  }
 });
 
-// Render XML string data
+// --- Helper: Parse & render XML data ---
 function renderXML(xmlString, tag, containerId) {
   const xml = new DOMParser().parseFromString(xmlString, "text/xml");
   const items = xml.getElementsByTagName(tag);
