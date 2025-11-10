@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testimonials>
+  <testimonial>
+    <name>“Amazing service and top-notch support!”</name>
+    <author>Emily Carter, TechWave Inc.</author>
+  </testimonial>
+  <testimonial>
+    <name>“FutureTech transformed our digital presence completely.”</name>
+    <author>David Smith, Cloudify Co.</author>
+  </testimonial>
+</testimonials>
