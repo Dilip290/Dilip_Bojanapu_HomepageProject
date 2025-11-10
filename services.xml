@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services>
+    <service>
+        <name>Web Development</name>
+        <description>We build responsive, high-performance websites optimized for all devices.</description>
+    </service>
+    <service>
+        <name>Cloud Solutions</name>
+        <description>Offering secure and scalable cloud architecture to modernize your business.</description>
+    </service>
+    <service>
+        <name>AI & Data Analytics</name>
+        <description>Transform your data into insights using machine learning and data visualization tools.</description>
+    </service>
+</services>
