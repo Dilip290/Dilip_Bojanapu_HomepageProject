@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testimonials>
   <testimonial>
-    <name>“Amazing service and top-notch support!”</name>
-    <author>Emily Carter, TechWave Inc.</author>
+    <name>“A top-notch company that delivers beyond expectations!”</name>
+    <author>Sarah Johnson, InnovateX CEO</author>
   </testimonial>
   <testimonial>
-    <name>“FutureTech transformed our digital presence completely.”</name>
-    <author>David Smith, Cloudify Co.</author>
+    <name>“Their AI and Cloud expertise completely transformed our workflow.”</name>
+    <author>Rajesh Nair, DataGrow CTO</author>
+  </testimonial>
+  <testimonial>
+    <name>“Reliable, creative, and professional — highly recommended.”</name>
+    <author>Michael Smith, Cloudify Solutions</author>
   </testimonial>
 </testimonials>
