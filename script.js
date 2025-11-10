@@ -1,7 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Load XML data
-  loadXML("services.xml", "service", "service-list");
-  loadXML("testimonials.xml", "testimonial", "testimonial-slider");
+  // Embedded XML content to bypass GitHub CORS restrictions
+  const servicesXML = `
+    <services>
+      <service>
+        <name>AI & Data Analytics</name>
+        <description>Turn your data into insights using AI, ML, and visualization dashboards.</description>
+      </service>
+      <service>
+        <name>Cloud Solutions</name>
+        <description>Secure and scalable cloud architecture built for modern businesses.</description>
+      </service>
+      <service>
+        <name>Web Development</name>
+        <description>Responsive, user-friendly websites crafted with modern web frameworks.</description>
+      </service>
+    </services>`;
+
+  const testimonialsXML = `
+    <testimonials>
+      <testimonial>
+        <name>“A top-notch company that delivers beyond expectations!”</name>
+        <author>Sarah Johnson, InnovateX CEO</author>
+      </testimonial>
+      <testimonial>
+        <name>“Their AI and Cloud expertise completely transformed our workflow.”</name>
+        <author>Rajesh Nair, DataGrow CTO</author>
+      </testimonial>
+      <testimonial>
+        <name>“Reliable, creative, and professional — highly recommended.”</name>
+        <author>Michael Smith, Cloudify Solutions</author>
+      </testimonial>
+    </testimonials>`;
+
+  // Parse and display data
+  renderXML(servicesXML, "service", "service-list");
+  renderXML(testimonialsXML, "testimonial", "testimonial-slider");
 
   // Contact form
   const form = document.getElementById("contact-form");
@@ -32,23 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function loadXML(file, tag, containerId) {
-  fetch(file)
-    .then((res) => res.text())
-    .then((str) => new DOMParser().parseFromString(str, "text/xml"))
-    .then((data) => {
-      const items = data.getElementsByTagName(tag);
-      let html = "";
-      for (let i = 0; i < items.length; i++) {
-        const title = items[i].getElementsByTagName("name")[0].textContent;
-        const desc = items[i].getElementsByTagName("description")[0]?.textContent;
-        const author = items[i].getElementsByTagName("author")[0]?.textContent;
-        if (desc) {
-          html += `<div class="card"><h3>${title}</h3><p>${desc}</p></div>`;
-        } else {
-          html += `<div class="slide"><p>"${title}"</p><cite>- ${author}</cite></div>`;
-        }
-      }
-      document.getElementById(containerId).innerHTML = html;
-    });
+// Render XML string data
+function renderXML(xmlString, tag, containerId) {
+  const xml = new DOMParser().parseFromString(xmlString, "text/xml");
+  const items = xml.getElementsByTagName(tag);
+  let html = "";
+  for (let i = 0; i < items.length; i++) {
+    const title = items[i].getElementsByTagName("name")[0].textContent;
+    const desc = items[i].getElementsByTagName("description")[0]?.textContent;
+    const author = items[i].getElementsByTagName("author")[0]?.textContent;
+    if (desc) {
+      html += `<div class="card"><h3>${title}</h3><p>${desc}</p></div>`;
+    } else {
+      html += `<div class="slide"><p>"${title}"</p><cite>- ${author}</cite></div>`;
+    }
+  }
+  document.getElementById(containerId).innerHTML = html;
 }
