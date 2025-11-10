@@ -1,0 +1,93 @@
+/* ----------  GLOBAL  ---------- */
+body {
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+    background-color: #f9fafc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ----------  HEADER & NAV  ---------- */
+header {
+    background-color: #0b3954;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ----------  SECTIONS  ---------- */
+section {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+h2 {
+    color: #0b3954;
+    border-bottom: 2px solid #0b3954;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* ----------  FORMS  ---------- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input, textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #0b3954;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #133c6a;
+}
+
+/* ----------  FOOTER  ---------- */
+footer {
+    text-align: center;
+    background-color: #0b3954;
+    color: #fff;
+    padding: 10px 0;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
