@@ -1,30 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Embedded service & testimonial data
+  // Data for dynamic sections
   const services = [
     { name: "AI & Data Analytics", desc: "Turn your data into insights using AI, ML, and visualization dashboards." },
     { name: "Cloud Solutions", desc: "Secure and scalable cloud architecture built for modern businesses." },
     { name: "Web Development", desc: "Responsive, user-friendly websites crafted with modern web frameworks." }
   ];
-
   const testimonials = [
     { quote: "A top-notch company that delivers beyond expectations!", author: "Sarah Johnson, InnovateX CEO" },
     { quote: "Their AI and Cloud expertise completely transformed our workflow.", author: "Rajesh Nair, DataGrow CTO" },
     { quote: "Reliable, creative, and professional — highly recommended.", author: "Michael Smith, Cloudify Solutions" }
   ];
 
-  // Render services
-  const serviceList = document.getElementById("service-list");
-  serviceList.innerHTML = services
-    .map(s => `<div class="card"><h3>${s.name}</h3><p>${s.desc}</p></div>`)
-    .join("");
+  // Render Services
+  document.getElementById("service-list").innerHTML =
+    services.map(s => `<div class="card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join("");
 
-  // Render testimonials
-  const testimonialSlider = document.getElementById("testimonial-slider");
-  testimonialSlider.innerHTML = testimonials
-    .map(t => `<div class="slide"><p>"${t.quote}"</p><cite>- ${t.author}</cite></div>`)
-    .join("");
+  // Render Testimonials
+  document.getElementById("testimonial-slider").innerHTML =
+    testimonials.map(t => `<div class="slide"><p>"${t.quote}"</p><cite>- ${t.author}</cite></div>`).join("");
 
-  // Contact form confirmation
+  // Contact form
   const form = document.getElementById("contact-form");
   const status = document.getElementById("form-status");
   form.addEventListener("submit", e => {
@@ -33,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
   });
 
-  // Fade-in animations
+  // Fade-in effect
   const fadeEls = document.querySelectorAll(".fade-in");
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -42,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
   fadeEls.forEach(el => observer.observe(el));
 
-  // Mobile menu
+  // Mobile Menu
   const menuToggle = document.getElementById("menu-toggle");
   const navLinks = document.querySelector(".nav-links");
   menuToggle.addEventListener("click", () => navLinks.classList.toggle("active"));
@@ -53,4 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
   });
   scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+  // Dark/Light Theme Toggle
+  const themeToggle = document.getElementById("theme-toggle");
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️";
+  }
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.contains("dark-mode");
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
 });
