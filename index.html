@@ -21,6 +21,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="dashboard.html" target="_blank">Dashboard</a></li>
         </ul>
         <div id="menu-toggle" class="menu-icon">&#9776;</div>
       </nav>
@@ -56,7 +57,6 @@
   <!-- ===== SERVICES ===== -->
   <section id="services" class="section fade-in">
     <h2>Our Services</h2>
-    <p>Click any card below to learn more.</p>
     <div id="service-list" class="card-list"></div>
   </section>
 
@@ -66,26 +66,21 @@
     <div id="testimonial-slider" class="slider"></div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <!-- ===== CONTACT (Google Form Embedded) ===== -->
   <section id="contact" class="section fade-in">
     <h2>Contact Us</h2>
-    <form id="contact-form">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="email" id="email" placeholder="Your Email" required />
-      <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-    <p id="form-status"></p>
-  </section>
+    <p>Please fill out the form below. Our team will reach out to you shortly.</p>
 
-  <!-- ===== POPUP MODAL ===== -->
-  <div id="popup-overlay" class="popup-overlay">
-    <div class="popup-content">
-      <span id="popup-close">&times;</span>
-      <h3 id="popup-title">Service Title</h3>
-      <p id="popup-desc">Detailed information about this service will appear here.</p>
-    </div>
-  </div>
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSf1Gju03QEVQCsK6Q9ZRbWRHkRaNHqxaY_EFyLGHrGiaYDU1g/viewform?embedded=true"
+      width="100%"
+      height="900"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0">
+      Loading…
+    </iframe>
+  </section>
 
   <!-- ===== SCROLL TO TOP ===== -->
   <button id="scrollTopBtn" title="Go to top">⬆</button>
