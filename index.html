@@ -1,91 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FutureTech Solutions</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FutureTech Solutions</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <header>
-    <div class="container">
-      <h1 class="logo">FutureTech</h1>
-      <nav id="navbar">
+<!-- NAVBAR -->
+<header>
+    <nav class="navbar">
+        <div class="logo">FutureTech</div>
         <ul class="nav-links">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="dashboard.html" target="_blank">Dashboard</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
         </ul>
-        <div id="menu-toggle" class="menu-icon">&#9776;</div>
-      </nav>
-    </div>
-  </header>
+    </nav>
+</header>
 
-  <!-- ===== HERO ===== -->
-  <section id="hero">
-    <div class="hero-overlay">
-      <div class="hero-content">
-        <h2>Building Tomorrow's Technology, Today</h2>
-        <p>Empowering businesses with AI, Cloud, and Data Solutions.</p>
-        <a href="#contact" class="btn">Get Started</a>
-      </div>
+<!-- HERO SECTION -->
+<section id="home" class="hero">
+    <div class="overlay">
+        <h1>Innovating the Future with Technology</h1>
+        <p>Cloud | AI | Data Engineering | Full-Stack Development</p>
     </div>
-  </section>
+</section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="section fade-in">
+<!-- ABOUT -->
+<section id="about" class="section">
     <h2>About Us</h2>
     <p>
-      <strong>FutureTech Solutions</strong> delivers cutting-edge digital transformation solutions.  
-      We specialise in Cloud, AI, Data Engineering, and Full-Stack Web Development for modern businesses.
+        <b>FutureTech Solutions</b> delivers cutting-edge digital transformation solutions.
+        We specialise in Cloud, AI, Data Engineering, and Full-Stack Web Development.
     </p>
+</section>
 
-    <div class="about-stats">
-      <div class="stat"><h3>150+</h3><p>Projects Delivered</p></div>
-      <div class="stat"><h3>90%</h3><p>Client Satisfaction</p></div>
-      <div class="stat"><h3>20+</h3><p>Countries Served</p></div>
-    </div>
-  </section>
-
-  <!-- ===== SERVICES ===== -->
-  <section id="services" class="section fade-in">
+<!-- SERVICES -->
+<section id="services" class="section">
     <h2>Our Services</h2>
-    <div id="service-list" class="card-list"></div>
-  </section>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section id="testimonials" class="section fade-in">
+    <div class="service-box">
+        <h3>AI & Data Analytics</h3>
+        <p>Build insights using AI, ML, and smart dashboards.</p>
+    </div>
+
+    <div class="service-box">
+        <h3>Cloud Solutions</h3>
+        <p>Secure and scalable cloud architecture for your business.</p>
+    </div>
+
+    <div class="service-box">
+        <h3>Web Development</h3>
+        <p>User-friendly and responsive full-stack applications.</p>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
     <h2>Testimonials</h2>
-    <div id="testimonial-slider" class="slider"></div>
-  </section>
 
-  <!-- ===== CONTACT (Airtable Form) ===== -->
-  <section id="contact" class="section fade-in">
+    <blockquote>“A top-notch company that delivers beyond expectations!”  
+        <span>— Sarah Johnson, InnovateX CEO</span>
+    </blockquote>
+
+    <blockquote>“Their AI and Cloud expertise transformed our workflow.”  
+        <span>— Rajesh Nair, DataGrow CTO</span>
+    </blockquote>
+
+    <blockquote>“Reliable, creative, and highly recommended.”  
+        <span>— Michael Smith, Cloudify Solutions</span>
+    </blockquote>
+</section>
+
+<!-- CONTACT FORM (Airtable Connected) -->
+<section id="contact" class="section">
     <h2>Contact Us</h2>
     <p>Please fill out the form below. Our team will contact you shortly.</p>
 
-    <form id="airtable-form">
-      <input type="text" id="fullName" placeholder="Full Name" required />
-      <input type="email" id="email" placeholder="Email Address" required />
-      <input type="tel" id="mobile" placeholder="Mobile Number" required />
-      <button type="submit" class="btn">Submit</button>
+    <form id="contactForm">
+        <input type="text" id="fullname" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="text" id="mobile" placeholder="Mobile Number" required>
+        
+        <button type="submit">Submit</button>
+
+        <p id="formMessage"></p>
     </form>
+</section>
 
-    <p id="form-status"></p>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <p>&copy; 2025 FutureTech Solutions | Designed by Dilip Bojanapu</p>
-  </footer>
-
+<script src="script.js"></script>
 </body>
 </html>
