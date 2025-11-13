@@ -9,27 +9,22 @@ document.getElementById("contactForm").addEventListener("submit", async function
     messageBox.innerText = "Submitting...";
 
     try {
-        const response = await fetch("https://api.airtable.com/v0/appYqnWJGdsWnzEup/tblrV5CJ8EQw9tc71", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer patPc6YkRigJ1uJCM.43dc644e54a7f9b4ffb561882b73f4aabd0b7fcd914d2117765d0c0521609705"
-            },
-            body: JSON.stringify({
-                records: [
-                    {
-                        fields: {
-                            "Full Name": name,
-                            "E-Mail": email,
-                            "Mobile": mobile,
-                            "Submitted At": new Date().toISOString()
-                        }
-                    }
-                ]
-            })
-        });
+        const response = await fetch(
+            "https://fascinating-hotteok-df65a2.netlify.app/.netlify/functions/saveClient",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    mobile: mobile
+                })
+            }
+        );
 
-        if (!response.ok) throw new Error("Airtable Error");
+        const result = await response.json();
+
+        if (!result.success) throw new Error(result.error || "Unknown error");
 
         messageBox.style.color = "green";
         messageBox.innerText = "Submitted successfully! We will contact you soon.";
