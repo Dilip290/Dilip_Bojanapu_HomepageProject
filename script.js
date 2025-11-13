@@ -1,38 +1,39 @@
-document.getElementById("contactForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
 
-    const name = document.getElementById("fullname").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
+  document.getElementById("contactForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-    const messageBox = document.getElementById("formMessage");
-    messageBox.innerText = "Submitting...";
+      const data = {
+        name: document.getElementById("fullname").value,
+        email: document.getElementById("email").value,
+        mobile: document.getElementById("mobile").value
+      };
 
-    try {
-        const response = await fetch(
-            "https://fascinating-hotteok-df65a2.netlify.app/.netlify/functions/saveClient",
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    mobile: mobile
-                })
-            }
-        );
+      const msg = document.getElementById("formMessage");
+      msg.style.color = "black";
+      msg.innerText = "Submitting...";
+
+      try {
+        const response = await fetch("/.netlify/functions/saveClient", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
 
         const result = await response.json();
 
-        if (!result.success) throw new Error(result.error || "Unknown error");
+        if (result.success) {
+          msg.style.color = "green";
+          msg.innerText = "Submitted successfully!";
+          document.getElementById("contactForm").reset();
+        } else {
+          throw new Error(result.error);
+        }
 
-        messageBox.style.color = "green";
-        messageBox.innerText = "Submitted successfully! We will contact you soon.";
+      } catch (err) {
+        msg.style.color = "red";
+        msg.innerText = "Error submitting. Try again.";
+      }
+  });
 
-        document.getElementById("contactForm").reset();
-
-    } catch (err) {
-        messageBox.style.color = "red";
-        messageBox.innerText = "Error! Could not submit. Try again.";
-    }
 });
