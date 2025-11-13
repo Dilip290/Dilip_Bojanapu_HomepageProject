@@ -9,7 +9,7 @@ document.getElementById("contactForm").addEventListener("submit", async function
     messageBox.innerText = "Submitting...";
 
     try {
-        const response = await fetch("https://api.airtable.com/v0/appYqnWJGdsWnzEup/tblrV5CJ8EQw9tc71", {
+        const response = await fetch("https://airtable.com/appYqnWJGdsWnzEup/tblrV5CJ8EQw9tc71/viwmwkUerrnPh5tkM", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
