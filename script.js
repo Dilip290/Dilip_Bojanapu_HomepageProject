@@ -4,30 +4,35 @@ document.getElementById("contactForm").addEventListener("submit", async function
     const name = document.getElementById("fullname").value.trim();
     const email = document.getElementById("email").value.trim();
     const mobile = document.getElementById("mobile").value.trim();
-    const messageBox = document.getElementById("formMessage");
 
-    messageBox.style.color = "black";
+    const messageBox = document.getElementById("formMessage");
     messageBox.innerText = "Submitting...";
 
     try {
         const response = await fetch("/.netlify/functions/saveClient", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, mobile })
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                mobile
+            })
         });
 
         const result = await response.json();
 
-        if (result.success) {
-            messageBox.style.color = "green";
-            messageBox.innerText = "Submitted successfully!";
-            document.getElementById("contactForm").reset();
-        } else {
-            throw new Error(result.error || "Unknown error");
-        }
+        if (!result.success) throw new Error(result.error);
 
-    } catch (error) {
+        messageBox.style.color = "green";
+        messageBox.innerText = "Submitted successfully! We will contact you soon.";
+
+        document.getElementById("contactForm").reset();
+
+    } catch (err) {
         messageBox.style.color = "red";
         messageBox.innerText = "Error! Could not submit. Try again.";
+        console.error("Frontend Error:", err);
     }
 });
