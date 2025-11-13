@@ -4,17 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FutureTech Solutions</title>
-  <meta name="description" content="FutureTech Solutions - Empowering businesses with AI, Cloud, and Data-driven solutions. Get in touch with us for technology transformation." />
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
   <!-- ===== HEADER ===== -->
   <header>
     <div class="container">
       <h1 class="logo">FutureTech</h1>
+
       <nav id="navbar">
         <ul class="nav-links">
           <li><a href="#hero">Home</a></li>
@@ -22,11 +23,12 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#contact">Contact</a></li>
-          <!-- Owner-only link hidden -->
-          <!-- <li><a href="dashboard.html" target="_blank">Dashboard</a></li> -->
+          <li><a href="dashboard.html" target="_blank">Dashboard</a></li>
         </ul>
+
         <div id="menu-toggle" class="menu-icon">&#9776;</div>
       </nav>
+
       <button id="theme-toggle" title="Toggle Theme">🌙</button>
     </div>
   </header>
@@ -37,8 +39,7 @@
       <div class="hero-content">
         <h2>Building Tomorrow's Technology, Today</h2>
         <p>Empowering businesses with AI, Cloud, and Data Solutions.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf1Gju03QEVQCsK6Q9ZRbWRHkRaNHqxaY_EFyLGHrGiaYDU1g/viewform?usp=sf_link"
-           class="btn" target="_blank">Get Started</a>
+        <a href="#contact" class="btn">Get Started</a>
       </div>
     </div>
   </section>
@@ -47,13 +48,8 @@
   <section id="about" class="section fade-in">
     <h2>About Us</h2>
     <p>
-      <strong>FutureTech Solutions</strong> helps global businesses embrace digital transformation through AI, Cloud, and Data Engineering. We create secure and scalable solutions tailored to your needs.
+      <strong>FutureTech Solutions</strong> provides cutting-edge IT services including cloud migration, AI analytics, and full-stack product development.
     </p>
-    <div class="about-stats">
-      <div class="stat"><h3>150+</h3><p>Projects Delivered</p></div>
-      <div class="stat"><h3>90%</h3><p>Client Satisfaction</p></div>
-      <div class="stat"><h3>20+</h3><p>Countries Served</p></div>
-    </div>
   </section>
 
   <!-- ===== SERVICES ===== -->
@@ -68,28 +64,38 @@
     <div id="testimonial-slider" class="slider"></div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <!-- ===== CONTACT FORM (Airtable Integrated) ===== -->
   <section id="contact" class="section fade-in">
     <h2>Contact Us</h2>
-    <p>Please fill out the form below. Our team will reach out to you shortly.</p>
+    <p>Send your details and our team will reach out to you shortly.</p>
 
-    <div style="max-width:900px;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.2);">
-      <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSf1Gju03QEVQCsK6Q9ZRbWRHkRaNHqxaY_EFyLGHrGiaYDU1g/viewform?embedded=true"
-        width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    </div>
+    <form id="clientForm" class="contact-form">
+      <div class="form-group">
+        <input type="text" id="name" placeholder="Full Name" required>
+      </div>
 
-    <p style="margin-top:20px;">If the form does not load, 
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf1Gju03QEVQCsK6Q9ZRbWRHkRaNHqxaY_EFyLGHrGiaYDU1g/viewform?usp=sf_link" target="_blank">click here to open directly</a>.
-    </p>
+      <div class="form-group">
+        <input type="email" id="email" placeholder="Email Address" required>
+      </div>
+
+      <div class="form-group">
+        <input type="tel" id="phone" placeholder="Mobile Number" required>
+      </div>
+
+      <div class="form-group">
+        <textarea id="message" placeholder="Your Message" required></textarea>
+      </div>
+
+      <button type="submit" class="btn">Submit</button>
+      <p id="status" class="status-message"></p>
+    </form>
   </section>
 
-  <!-- ===== SCROLL TO TOP ===== -->
   <button id="scrollTopBtn" title="Go to top">⬆</button>
 
-  <!-- ===== FOOTER ===== -->
   <footer>
-    <p>&copy; 2025 FutureTech Solutions | Designed with ❤️ by Dilip Bojanapu</p>
+    <p>&copy; 2025 FutureTech Solutions | Designed by Dilip Bojanapu</p>
   </footer>
+
 </body>
 </html>
