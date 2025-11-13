@@ -9,105 +9,114 @@
 
 <body>
 
-<!-- NAVBAR -->
-<header>
-    <nav class="navbar">
+    <!-- Navigation -->
+    <header class="navbar">
         <div class="logo">FutureTech</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-        </ul>
-    </nav>
-</header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
 
-<!-- HERO SECTION -->
-<section id="home" class="hero">
-    <div class="overlay">
-        <h1>Innovating the Future with Technology</h1>
-        <p>Cloud | AI | Data Engineering | Full-Stack Development</p>
-    </div>
-</section>
+    <!-- Home Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-text">
+            <h1>Empowering Business with AI & Cloud Solutions</h1>
+            <p>FutureTech delivers enterprise-grade innovation through AI, ML, Cloud, and Full-Stack Development.</p>
+        </div>
+    </section>
 
-<!-- ABOUT -->
-<section id="about" class="section">
-    <h2>About Us</h2>
-    <p>
-        <b>FutureTech Solutions</b> delivers cutting-edge digital transformation solutions.
-        We specialise in Cloud, AI, Data Engineering, and Full-Stack Web Development.
-    </p>
-</section>
+    <!-- About -->
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p class="center">
+            FutureTech Solutions delivers cutting-edge digital transformation services globally.
+            Our expertise spans Cloud Engineering, AI/ML, Data Engineering, and Full-Stack Development.
+        </p>
 
-<!-- SERVICES -->
-<section id="services" class="section">
-    <h2>Our Services</h2>
+        <div class="stats">
+            <div><span>150+</span><p>Projects Delivered</p></div>
+            <div><span>90%</span><p>Client Satisfaction</p></div>
+            <div><span>20+</span><p>Countries Served</p></div>
+        </div>
+    </section>
 
-    <div class="service-box">
-        <h3>AI & Data Analytics</h3>
-        <p>Build insights using AI, ML, and smart dashboards.</p>
-    </div>
+    <!-- Services -->
+    <section id="services" class="section">
+        <h2>Our Services</h2>
 
-    <div class="service-box">
-        <h3>Cloud Solutions</h3>
-        <p>Secure and scalable cloud architecture for your business.</p>
-    </div>
-
-    <div class="service-box">
-        <h3>Web Development</h3>
-        <p>User-friendly and responsive full-stack applications.</p>
-    </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials" class="section">
-    <h2>Testimonials</h2>
-
-    <blockquote>“A top-notch company that delivers beyond expectations!”  
-        <span>— Sarah Johnson, InnovateX CEO</span>
-    </blockquote>
-
-    <blockquote>“Their AI and Cloud expertise transformed our workflow.”  
-        <span>— Rajesh Nair, DataGrow CTO</span>
-    </blockquote>
-
-    <blockquote>“Reliable, creative, and highly recommended.”  
-        <span>— Michael Smith, Cloudify Solutions</span>
-    </blockquote>
-</section>
-
-<!-- CONTACT FORM (Airtable Connected) -->
-<!-- Contact Section -->
-<section id="contact" class="contact-section">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <p class="sub-text">Please fill out the form below. Our team will contact you shortly.</p>
-
-        <form id="contactForm" class="contact-form">
-            <div class="form-group">
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" required placeholder="Enter your full name">
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>AI & Data Analytics</h3>
+                <p>Actionable insights powered by AI, ML and smart dashboards.</p>
             </div>
 
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" required placeholder="yourname@email.com">
+            <div class="service-card">
+                <h3>Cloud Solutions</h3>
+                <p>Scalable and secure cloud architecture for modern businesses.</p>
             </div>
 
-            <div class="form-group">
-                <label for="mobile">Mobile Number</label>
-                <input type="text" id="mobile" required placeholder="9876543210">
+            <div class="service-card">
+                <h3>Web Development</h3>
+                <p>Responsive web platforms with world-class UI/UX design.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section">
+        <h2>Testimonials</h2>
+
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p>“A top-notch company that delivers beyond expectations!”</p>
+                <span>- Sarah Johnson, InnovateX CEO</span>
             </div>
 
-            <button type="submit" class="submit-btn">Submit</button>
-            <p id="formMessage" class="form-message"></p>
-        </form>
-    </div>
-</section>
+            <div class="testimonial">
+                <p>“Their AI & Cloud expertise transformed our workflow.”</p>
+                <span>- Rajesh Nair, DataGrow CTO</span>
+            </div>
 
+            <div class="testimonial">
+                <p>“Reliable, creative, professional — highly recommended.”</p>
+                <span>- Michael Smith, Cloudify Solutions</span>
+            </div>
+        </div>
+    </section>
 
-<script src="script.js"></script>
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p class="sub-text">Fill out the form and our team will reach out shortly.</p>
+
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="yourname@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="text" id="mobile" required placeholder="9876543210">
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+                <p id="formMessage" class="form-message"></p>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
