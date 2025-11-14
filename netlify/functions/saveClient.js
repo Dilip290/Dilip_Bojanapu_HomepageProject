@@ -1,6 +1,9 @@
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
+  console.log("Function started...");
+  console.log("HTTP Method:", event.httpMethod);
+
   // Enable CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -11,6 +14,7 @@ exports.handler = async (event) => {
 
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
+    console.log("Handling CORS preflight");
     return {
       statusCode: 200,
       headers,
@@ -20,6 +24,7 @@ exports.handler = async (event) => {
 
   // Only allow POST
   if (event.httpMethod !== 'POST') {
+    console.log("Method not allowed:", event.httpMethod);
     return {
       statusCode: 405,
       headers,
@@ -32,7 +37,9 @@ exports.handler = async (event) => {
     let data;
     try {
       data = JSON.parse(event.body);
+      console.log("Parsed data:", data);
     } catch (parseError) {
+      console.error("JSON parse error:", parseError);
       return {
         statusCode: 400,
         headers,
@@ -44,6 +51,7 @@ exports.handler = async (event) => {
 
     // Validate required fields
     if (!name || !email || !mobile) {
+      console.error("Missing fields:", { name, email, mobile });
       return {
         statusCode: 400,
         headers,
@@ -56,22 +64,24 @@ exports.handler = async (event) => {
     const baseId = process.env.AIRTABLE_BASE_ID;
     const tableName = process.env.AIRTABLE_TABLE_NAME;
 
+    console.log("Environment variables check:", {
+      hasApiKey: !!apiKey,
+      hasBaseId: !!baseId,
+      hasTableName: !!tableName
+    });
+
     if (!apiKey || !baseId || !tableName) {
-      console.error('Missing environment variables:', {
-        hasApiKey: !!apiKey,
-        hasBaseId: !!baseId,
-        hasTableName: !!tableName
-      });
-      
+      console.error('Missing environment variables');
       return {
         statusCode: 500,
         headers,
-        body: JSON.stringify({ error: 'Server configuration error' })
+        body: JSON.stringify({ error: 'Server configuration error - check environment variables' })
       };
     }
 
-    // Airtable API URL - CORRECTED ENDPOINT
+    // Airtable API URL
     const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableName}`;
+    console.log("Airtable URL:", airtableUrl);
 
     const payload = {
       records: [
@@ -86,10 +96,7 @@ exports.handler = async (event) => {
       ]
     };
 
-    console.log('Sending to Airtable:', {
-      url: airtableUrl,
-      payload: payload
-    });
+    console.log("Sending to Airtable:", JSON.stringify(payload, null, 2));
 
     // Send request to Airtable
     const response = await fetch(airtableUrl, {
@@ -102,29 +109,29 @@ exports.handler = async (event) => {
     });
 
     const responseData = await response.json();
-
-    console.log('Airtable response:', {
-      status: response.status,
-      data: responseData
-    });
+    
+    console.log("Airtable response status:", response.status);
+    console.log("Airtable response data:", JSON.stringify(responseData, null, 2));
 
     if (!response.ok) {
+      console.error("Airtable API error:", responseData);
       return {
         statusCode: response.status,
         headers,
         body: JSON.stringify({ 
-          error: 'Failed to save to database',
-          details: responseData 
+          error: 'Failed to save to Airtable',
+          details: responseData.error || responseData 
         })
       };
     }
 
+    console.log("Successfully saved to Airtable");
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({ 
         success: true,
-        message: 'Data saved successfully' 
+        message: 'Data saved successfully'
       })
     };
 
