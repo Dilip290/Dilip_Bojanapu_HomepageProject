@@ -1,6 +1,5 @@
 exports.handler = async (event) => {
   try {
-    // Only allow POST requests
     if (event.httpMethod !== "POST") {
       return {
         statusCode: 405,
@@ -8,10 +7,8 @@ exports.handler = async (event) => {
       };
     }
 
-    // Parse the incoming data
     const data = JSON.parse(event.body);
 
-    // Read environment variables
     const apiKey = process.env.AIRTABLE_API_KEY;
     const baseId = process.env.AIRTABLE_BASE_ID;
     const tableName = process.env.AIRTABLE_TABLE_NAME;
@@ -24,10 +21,9 @@ exports.handler = async (event) => {
       };
     }
 
-    // Use built-in fetch (Netlify Node 18+)
     const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableName}`;
 
-    const airtableResponse = await fetch(airtableUrl, {
+    const response = await fetch(airtableUrl, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${apiKey}`,
@@ -47,18 +43,26 @@ exports.handler = async (event) => {
       })
     });
 
-    const result = await airtableResponse.json();
+    const result = await response.json();
+
+    if (result.error) {
+      console.error("Airtable error:", result);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: result.error.message })
+      };
+    }
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true, airtable: result })
+      body: JSON.stringify({ success: true })
     };
 
   } catch (err) {
-    console.error("Function Error:", err);
+    console.error("Function error:", err);
     return {
       statusCode: 500,
-      body: JSON.stringify({ success: false, error: err.message })
+      body: JSON.stringify({ error: err.message })
     };
   }
 };
