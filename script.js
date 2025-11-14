@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const data = {
-        fullname: document.getElementById("fullname").value,
+        name: document.getElementById("fullname").value,
         email: document.getElementById("email").value,
         mobile: document.getElementById("mobile").value
       };
+
 
       const msg = document.getElementById("formMessage");
       msg.style.color = "black";
