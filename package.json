@@ -4,7 +4,9 @@
   "description": "FutureTech Netlify functions",
   "main": "index.js",
   "dependencies": {
-    "airtable": "^0.12.2",
-    "node-fetch": "2.6.7"
+    "node-fetch": "^2.6.7"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
