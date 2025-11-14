@@ -52,13 +52,15 @@ body {
 /* HERO SECTION */
 .hero-section {
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), 
+            url('"C:\Users\DILIP\OneDrive\Pictures\Screenshots\Screenshot 2025-11-12 143803.png"') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
   margin-top: 60px;
+  position: relative;
 }
 
 .hero-text h1 {
