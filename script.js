@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const data = {
-        name: document.getElementById("fullname").value,
+        fullname: document.getElementById("fullname").value,
         email: document.getElementById("email").value,
         mobile: document.getElementById("mobile").value
       };
