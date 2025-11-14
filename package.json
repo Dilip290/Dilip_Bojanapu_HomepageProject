@@ -1,0 +1,10 @@
+{
+  "name": "futuretech-site",
+  "version": "1.0.0",
+  "description": "FutureTech Netlify functions",
+  "main": "index.js",
+  "dependencies": {
+    "airtable": "^0.12.2",
+    "node-fetch": "2.6.7"
+  }
+}
