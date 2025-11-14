@@ -1,61 +1,69 @@
 const fetch = require("node-fetch");
-require("dotenv").config();
 
 exports.handler = async (event) => {
+  // Only allow POST method
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: "Method Not Allowed" })
+      body: JSON.stringify({ error: "Method Not Allowed" }),
     };
   }
 
-  // Environment variables
+  // Read environment variables
   const API_KEY = process.env.AIRTABLE_API_KEY;
   const BASE_ID = process.env.AIRTABLE_BASE_ID;
   const TABLE_NAME = process.env.AIRTABLE_TABLE_NAME;
 
+  // Debug check
   if (!API_KEY || !BASE_ID || !TABLE_NAME) {
-    console.error("Missing environment variables");
+    console.error("❌ Missing environment variables");
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Server configuration error" })
+      body: JSON.stringify({ error: "Server configuration error" }),
     };
   }
 
-  const { name, email, mobile } = JSON.parse(event.body);
+  // Read submitted data
+  let formData = JSON.parse(event.body);
 
-  const airtableUrl = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(
-    TABLE_NAME
-  )}`;
+  const airtableURL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
+
+  const bodyData = {
+    records: [
+      {
+        fields: {
+          "Full Name": formData.name,
+          "E-Mail": formData.email,
+          "Mobile": formData.mobile,
+          "Submitted At": new Date().toISOString(),
+        },
+      },
+    ],
+  };
 
   try {
-    const response = await fetch(airtableUrl, {
+    const response = await fetch(airtableURL, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${API_KEY}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        fields: {
-          "Full Name": name,
-          "E-Mail": email,
-          "Mobile": mobile,
-          "Submitted At": new Date().toISOString()
-        }
-      })
+      body: JSON.stringify(bodyData),
     });
 
     const result = await response.json();
 
+    // Success
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true, result })
+      body: JSON.stringify({ success: true, airtableResponse: result }),
     };
   } catch (error) {
-    console.error("ERROR:", error);
+    console.error("❌ Error saving to Airtable:", error);
+
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to save data" })
+      body: JSON.stringify({ success: false, error: error.message }),
     };
   }
 };
