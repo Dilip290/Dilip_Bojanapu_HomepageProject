@@ -1,61 +1,64 @@
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   try {
+    // Only allow POST requests
     if (event.httpMethod !== "POST") {
       return {
         statusCode: 405,
-        body: JSON.stringify({ error: "Method Not Allowed" }),
+        body: JSON.stringify({ error: "Method Not Allowed" })
       };
     }
 
-    const { fullname, email, mobile } = JSON.parse(event.body);
+    // Parse the incoming data
+    const data = JSON.parse(event.body);
 
-    if (!fullname || !email || !mobile) {
+    // Read environment variables
+    const apiKey = process.env.AIRTABLE_API_KEY;
+    const baseId = process.env.AIRTABLE_BASE_ID;
+    const tableName = process.env.AIRTABLE_TABLE_NAME;
+
+    if (!apiKey || !baseId || !tableName) {
+      console.error("Missing environment variables");
       return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Missing required fields" }),
+        statusCode: 500,
+        body: JSON.stringify({ error: "Server missing configuration" })
       };
     }
 
-    const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-    const BASE_ID = process.env.AIRTABLE_BASE_ID;
-    const TABLE = "Clients";
+    // Use built-in fetch (Netlify Node 18+)
+    const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableName}`;
 
-    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE)}`;
-
-    const body = {
-      records: [
-        {
-          fields: {
-            "Full Name": fullname,
-            "E-Mail": email,
-            "Mobile": mobile,
-            "Submitted At": new Date().toISOString()
-          }
-        }
-      ]
-    };
-
-    // global fetch (Node 18)
-    const airtableRes = await fetch(url, {
+    const airtableResponse = await fetch(airtableUrl, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        records: [
+          {
+            fields: {
+              "Full Name": data.name,
+              "E-Mail": data.email,
+              "Mobile": data.mobile,
+              "Submitted At": new Date().toISOString()
+            }
+          }
+        ]
+      })
     });
 
-    const airtableData = await airtableRes.json();
+    const result = await airtableResponse.json();
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true, data: airtableData }),
+      body: JSON.stringify({ success: true, airtable: result })
     };
 
   } catch (err) {
+    console.error("Function Error:", err);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
+      body: JSON.stringify({ success: false, error: err.message })
     };
   }
 };
