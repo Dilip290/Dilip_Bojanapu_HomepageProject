@@ -23,15 +23,18 @@ body {
   z-index: 1000;
 }
 
+.navbar .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .navbar .logo {
   font-size: 26px;
   font-weight: 600;
-  display: inline-block;
-}
-
-.navbar nav {
-  display: inline-block;
-  float: right;
 }
 
 .navbar nav a {
@@ -44,13 +47,6 @@ body {
 
 .navbar nav a:hover {
   opacity: 0.8;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
 }
 
 /* HERO SECTION */
