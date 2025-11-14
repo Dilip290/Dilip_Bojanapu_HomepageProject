@@ -1,40 +1,62 @@
-const fetch = require("node-fetch");
-
-exports.handler = async (event) => {
+exports.handler = async (event, context) => {
   try {
-    const data = JSON.parse(event.body);
+    // Only allow POST
+    if (event.httpMethod !== "POST") {
+      return {
+        statusCode: 405,
+        body: JSON.stringify({ error: "Method Not Allowed" }),
+      };
+    }
 
-    const airtableRes = await fetch("https://api.airtable.com/v0/appYqnWJGdsWnzEup/tblrV5CJ8EQw9tc71", {
+    const { fullname, email, mobile } = JSON.parse(event.body);
+
+    if (!fullname || !email || !mobile) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Missing required fields" }),
+      };
+    }
+
+    // Airtable API Data
+    const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+    const BASE_ID = process.env.AIRTABLE_BASE_ID;
+    const TABLE_NAME = "Clients";
+
+    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
+
+    const data = {
+      records: [
+        {
+          fields: {
+            "Full Name": fullname,
+            "E-Mail": email,
+            "Mobile": mobile,
+            "Submitted At": new Date().toISOString(),
+          },
+        },
+      ],
+    };
+
+    // USE GLOBAL FETCH (Node 18, no dependency!)
+    const response = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "Bearer patPc6YkRigJ1uJCM.43dc644e54a7f9b4ffb561882b73f4aabd0b7fcd914d2117765d0c0521609705",
+        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        records: [
-          {
-            fields: {
-              "Full Name": data.name,
-              "E-Mail": data.email,
-              "Mobile": data.mobile,
-              "Submitted At": new Date().toISOString()
-            }
-          }
-        ]
-      })
+      body: JSON.stringify(data),
     });
 
-    const result = await airtableRes.json();
+    const result = await response.json();
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true, result })
+      body: JSON.stringify({ success: true, airtable: result }),
     };
-
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ success: false, error: err.message })
+      body: JSON.stringify({ error: err.message }),
     };
   }
 };
