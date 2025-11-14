@@ -1,6 +1,5 @@
 exports.handler = async (event, context) => {
   try {
-    // Only allow POST
     if (event.httpMethod !== "POST") {
       return {
         statusCode: 405,
@@ -17,42 +16,42 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Airtable API Data
     const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
     const BASE_ID = process.env.AIRTABLE_BASE_ID;
-    const TABLE_NAME = "Clients";
+    const TABLE = "Clients";
 
-    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
+    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE)}`;
 
-    const data = {
+    const body = {
       records: [
         {
           fields: {
             "Full Name": fullname,
             "E-Mail": email,
             "Mobile": mobile,
-            "Submitted At": new Date().toISOString(),
-          },
-        },
-      ],
+            "Submitted At": new Date().toISOString()
+          }
+        }
+      ]
     };
 
-    // USE GLOBAL FETCH (Node 18, no dependency!)
-    const response = await fetch(url, {
+    // global fetch (Node 18)
+    const airtableRes = await fetch(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(body)
     });
 
-    const result = await response.json();
+    const airtableData = await airtableRes.json();
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true, airtable: result }),
+      body: JSON.stringify({ success: true, data: airtableData }),
     };
+
   } catch (err) {
     return {
       statusCode: 500,
